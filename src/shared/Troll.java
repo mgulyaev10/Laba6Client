@@ -4,6 +4,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,7 @@ public class Troll extends Essence implements Comparable<Troll>, Serializable {
     private boolean isSit;
     private boolean isSad;
     private List<Thing> thingsInHands = new ArrayList<>();
+    private OffsetDateTime initDate;
 
     /**
      * Конструктор для класса shared.shared.Troll, если HP тролля неизвестно.
@@ -22,6 +26,7 @@ public class Troll extends Essence implements Comparable<Troll>, Serializable {
         super(age, name);
         isSit = true;
         isSad = true;
+        initDate = OffsetDateTime.now(ZoneId.of("Europe/Moscow"));
     }
 
     /**
@@ -34,6 +39,7 @@ public class Troll extends Essence implements Comparable<Troll>, Serializable {
         super(age, name, HP);
         isSit = true;
         isSad = true;
+        initDate = OffsetDateTime.now(ZoneId.of("Europe/Moscow"));
     }
 
     /**
@@ -51,6 +57,7 @@ public class Troll extends Essence implements Comparable<Troll>, Serializable {
                     object.getInt("weight"));
             thingsInHands.add(t);
         }
+        initDate = OffsetDateTime.now(ZoneId.of("Europe/Moscow"));
     }
 
     /**
@@ -110,6 +117,10 @@ public class Troll extends Essence implements Comparable<Troll>, Serializable {
 
     public boolean isSad() {
         return isSad;
+    }
+
+    public OffsetDateTime getInitDate() {
+        return initDate;
     }
 
     /**
@@ -186,9 +197,9 @@ public class Troll extends Essence implements Comparable<Troll>, Serializable {
 
     @Override
     public String toString() {
-        return "Troll " + getName() + ". Возраст: " + Integer.toString(getAge()) + ". HP: " + Integer.toString(getHP())
-                + ". IsHungry: " + Boolean.toString(isHungry()) +
-                ". IsSit: " + Boolean.toString(isSit) + ". IsSad: " + Boolean.toString(isSad) + ". Things: "
+        return "Troll " + getName() + ". Возраст: " + getAge() + ". HP: " + getHP()
+                + ". IsHungry: " + isHungry() +
+                ". IsSit: " + isSit + ". IsSad: " + isSad + ". Things: "
                 + thingsInHands;
     }
 
