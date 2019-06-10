@@ -1,8 +1,11 @@
 package shared;
 
+import database.DBConst;
+import database.Queryable;
+
 import java.io.Serializable;
 
-public class Thing implements Serializable {
+public class Thing implements Serializable, Queryable {
     private Condition condition;
     private String name;
     private int weight;
@@ -53,9 +56,25 @@ public class Thing implements Serializable {
         return "Thing " + name + ". Condition is " + condition.toString() + ". Weight = " + weight;
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public enum Condition implements Serializable {
         Liquid,
         Solid,
         Gaseous;
+    }
+
+    @Override
+    public String getInsertSqlQuery() {
+        return String.format("INSERT INTO "+ DBConst.THINGS_TABLE+" VALUES(ID_TO_REPLACE,TROLL_ID_TO_REPLACE,'%s','%s',%s);",
+                DBConst.THING_NAME,DBConst.THING_CONDITION,DBConst.THING_WEIGHT);
+    }
+
+    @Override
+    public String getDeleteSqlQuery() {
+        return "DELETE FROM "+DBConst.THINGS_TABLE+" WHERE id="+hashCode()+" AND "+DBConst.THING_TROLL_ID+"=TROLL_ID_TO_REPLACE;";
     }
 }

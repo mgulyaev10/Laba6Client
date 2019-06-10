@@ -16,6 +16,7 @@ public class TransferPackage implements Serializable {
     private String cmdData;
     private transient Stream<Troll> data;
     private byte[] additionalData;
+    private User mUser;
 
     public TransferPackage(int id, String cmdData, Stream<Troll> data) {
         this.id = id;
@@ -101,5 +102,13 @@ public class TransferPackage implements Serializable {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public User getUser() {
+        return mUser;
+    }
+
+    public void setUser(User user) {
+        mUser = user;
     }
 }
