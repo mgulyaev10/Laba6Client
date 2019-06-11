@@ -2,6 +2,7 @@ package network;
 
 import database.DBConst;
 import database.Queryable;
+import security.StringHasher;
 
 import java.io.Serializable;
 
@@ -35,7 +36,12 @@ public class User implements Serializable, Queryable {
         return login;
     }
 
-    public String getPassword() {
+    public String getHashedPassword() {
+        String hash = StringHasher.getHashedString(password, StringHasher.Algorithms.MD2);
+        return hash;
+    }
+
+    public String getPassword(){
         return password;
     }
 
@@ -78,7 +84,7 @@ public class User implements Serializable, Queryable {
 
     @Override
     public String getInsertSqlQuery() {
-        return "INSERT INTO "+DBConst.USERS_TABLE+" VALUES("+hashCode()+",'"+getLogin()+"','"+getPassword()+"','"+getEmail()+"');";
+        return "INSERT INTO "+DBConst.USERS_TABLE+" VALUES("+hashCode()+",'"+getLogin()+"','"+getHashedPassword()+"','"+getEmail()+"');";
     }
 
     @Override

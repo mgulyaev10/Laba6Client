@@ -5,6 +5,7 @@ import collection.Command;
 import filesystem.FileManager;
 import network.TransferPackage;
 import network.User;
+import security.StringHasher;
 
 import java.io.*;
 import java.net.*;
@@ -100,7 +101,7 @@ public class Main {
                                 line = "login";
                                 tpkg = new TransferPackage(110, "login {" + user.getLogin() + "} {" + user.getPassword() + "} {" + user.getEmail() + "}", null);
                             } else{
-                                System.out.println("Для работы с программой Вам необходимо зарегистрироваться или авторизироваться.\n");
+                                System.out.println("Для работы с программой Вам необходимо зарегистрироваться или авторизироваться.");
                                 line = "";
                                 continue;
                             }

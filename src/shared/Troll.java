@@ -207,7 +207,7 @@ public class Troll extends Essence implements Comparable<Troll>, Serializable, Q
         return "Troll " + getName() + ". Возраст: " + getAge() + ". HP: " + getHP()
                 + ". IsHungry: " + isHungry() +
                 ". IsSit: " + isSit + ". IsSad: " + isSad + ". Things: "
-                + thingsInHands;
+                + thingsInHands + " . Дата создания: "+initDate.toString();
     }
 
 
