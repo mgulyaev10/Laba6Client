@@ -1,11 +1,9 @@
 package main;
 
 import collection.CollectionManager;
-import collection.Command;
 import filesystem.FileManager;
 import network.TransferPackage;
 import network.User;
-import security.StringHasher;
 
 import java.io.*;
 import java.net.*;
@@ -93,7 +91,7 @@ public class Main {
                                     user = new User(login,password,email);
                                 }
                                 else{
-                                    System.out.println("Ошибка: некорректный email! Попробуйте еще раз)");
+                                    System.out.println("Ошибка: некорректный email! Попробуйте еще раз");
                                     line = "";
                                     continue;
                                 }
