@@ -190,6 +190,7 @@ public class Main {
                         case 2:
                         case 4:
                         case 5:
+                        case 14:
                             previousCmdId = receivedPkg.getId();
                             System.out.println(receivedPkg.getCmdData());
                             System.out.println(new String(receivedPkg.getAdditionalData(), Main.DEFAULT_CHAR_SET));
